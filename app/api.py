@@ -7,13 +7,11 @@ from routes.registros import registros
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",
-    "http://notario-fastapi-08fad7375e5f.herokuapp.com",
-    "https://mylextools-d3b8930fee26.herokuapp.com/"
+    "*"
 ]
 
 
-app.add_middleware(
+app.add_middlewareeware ( 
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
