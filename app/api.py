@@ -3,28 +3,29 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes.actos import actos
 from routes.registros import registros
 
-
 app = FastAPI()
 
 origins = [
-    "https://localhost:3000",
-    "https://mylextools-d3b8930fee26.herokuapp.com/",
-    "mylextools-d3b8930fee26.herokuapp.com/"
+    "*",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:8080",
 ]
 
-
-app.add_middlewareeware ( 
+app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
 
-@app.get("/", tags=["root"])
-async def read_root() -> dict:
-    return {"message": "Welcome to your todo list."}
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
 
 app.include_router(registros)
 app.include_router(actos)
