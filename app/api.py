@@ -7,7 +7,9 @@ from routes.registros import registros
 app = FastAPI()
 
 origins = [
-    "*"
+    "localhost:3000",
+    "https://mylextools-d3b8930fee26.herokuapp.com/",
+    "mylextools-d3b8930fee26.herokuapp.com/"
 ]
 
 
