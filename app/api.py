@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.actos import actos
 from routes.registros import registros
+from routes.estudiante import estudiante
+from routes.notas import notas
+from routes.calendario import calendario
 
 app = FastAPI()
 
@@ -26,5 +29,7 @@ def read_root():
 
 app.include_router(registros)
 app.include_router(actos)
-
+app.include_router(estudiante)
+app.include_router(notas)
+app.include_router(calendario)
 
