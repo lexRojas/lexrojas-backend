@@ -5,6 +5,7 @@ from routes.notario.registros import registros
 from routes.notas_app.estudiante import estudiante
 from routes.notas_app.notas import notas
 from routes.notas_app.calendario import calendario
+from routes.notas_app.flujo import flujo
 
 app = FastAPI()
 
@@ -32,4 +33,6 @@ app.include_router(actos)
 app.include_router(estudiante)
 app.include_router(notas)
 app.include_router(calendario)
+app.include_router(flujo)
+
 
