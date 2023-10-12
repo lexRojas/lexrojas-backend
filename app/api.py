@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes.actos import actos
-from routes.registros import registros
-from routes.estudiante import estudiante
-from routes.notas import notas
-from routes.calendario import calendario
+from routes.notario.actos import actos
+from routes.notario.registros import registros
+from routes.notas_app.estudiante import estudiante
+from routes.notas_app.notas import notas
+from routes.notas_app.calendario import calendario
 
 app = FastAPI()
 
