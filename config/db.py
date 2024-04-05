@@ -1,5 +1,4 @@
-import pymysql.cursors
-import pymysql.connections
+import MySQLdb
 
 #---LOCAL DATABASE ----
 
@@ -10,18 +9,26 @@ import pymysql.connections
 
 #---HEROKU DATABASE ----
 
-_hostname = 'jtb9ia3h1pgevwb1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
-_username = 'vl0v51r0t6ald9dh'
-_password = 'nq5d3dq46cc551cj'
-_database = 'u67qxne0bs0uujx8' 
+             
+_hostname = 'erxv1bzckceve5lh.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
+_username = 'k1hpp1oicmrsuqfh'
+_password = 'tsaxu6wsnhor1d2u'
+_database = 'vmy3gj1q7kthw5c8' 
+             
 
 
-# Connect to the database
-conn = pymysql.connect(host=_hostname ,
-                             user=_username,
-                             password=_password,
-                             database=_database,
-                             cursorclass=pymysql.cursors.DictCursor)
+# Database configuration
+db_config = {
+    'host': _hostname,
+    'user': _username,
+    'passwd': _password,
+    'db': _database,
+}
+
+# Create a connection to the database
+conn = MySQLdb.connect(**db_config)
+
+
 
 
 

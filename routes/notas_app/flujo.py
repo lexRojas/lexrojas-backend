@@ -1,27 +1,33 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
+from datetime import datetime
 from config.db  import conn
+
 
 flujo = APIRouter()
 
-@flujo.post("/flujo")
-async def setFlujo(valor:int):
-      with conn.cursor() as cursor:
-        # Read a single record
-        if ( valor > 0):
-          sql = f"INSERT INTO flujo (valor) VALUES ({valor});"
-          print (sql) 
-          i = cursor.execute(sql)
-          print (i)
-          conn.commit
-      return {"message": "Employee added successfully"}
+# Pydantic model to define the schema of the data
+class Flujo(BaseModel):
+    idFlujo: int
+    fecha: datetime
+    valor: int
 
+# Route to create an item
+@flujo.post("/flujo/", )
+async def create_item(v:int):
+    cursor = conn.cursor()
+    query = f'INSERT INTO flujo (valor) VALUES ({v});'
+    cursor.execute(query)
+    conn.commit()
+    i = cursor.lastrowid
+    cursor.close()
+    return i
 
-
-@flujo.get("/flujo")
-async def getFlujo():
-      with conn.cursor() as cursor:
-        # Read a single record
-        sql = f"SELECT * FROM  flujo;"
-        cursor.execute(sql)
-        result = cursor.fetchall
-        return result 
+# Route to read an item
+@flujo.get("/flujo" )
+async def read_item():
+    with conn.cursor() as cursor:
+      query = "SELECT * FROM flujo;"
+      cursor.execute(query)
+      items = cursor.fetchall()
+      return (items)
